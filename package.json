@@ -1,0 +1,89 @@
+{
+  "name": "terminal-error-sound",
+  "displayName": "Terminal Error Sound",
+  "description": "Plays a sound when a terminal command prints an error or exits with a non-zero code.",
+  "version": "1.0.0",
+  "publisher": "nillan",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminalErrorSound.testSound",
+        "title": "Terminal Error Sound: Test Sound"
+      },
+      {
+        "command": "terminalErrorSound.selectSound",
+        "title": "Terminal Error Sound: Select Custom Sound"
+      },
+      {
+        "command": "terminalErrorSound.chooseBuiltInSound",
+        "title": "Terminal Error Sound: Choose Built-in Sound"
+      },
+      {
+        "command": "terminalErrorSound.resetSound",
+        "title": "Terminal Error Sound: Reset Custom Sound"
+      }
+    ],
+    "configuration": {
+      "title": "Terminal Error Sound",
+      "properties": {
+        "terminalErrorSound.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable terminal error sounds."
+        },
+        "terminalErrorSound.soundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to a custom .wav sound file."
+        },
+        "terminalErrorSound.patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "\\berror\\b",
+            "\\bfailed\\b",
+            "\\bexception\\b",
+            "traceback",
+            "panic:"
+          ],
+          "description": "Regex patterns that trigger the sound when they appear in terminal output."
+        },
+        "terminalErrorSound.builtInSound": {
+          "type": "string",
+          "default": "fahh",
+          "enum": [
+            "fahh",
+            "bruh",
+            "fail",
+            "ohmygod",
+            "vineboom"
+          ],
+          "description": "Select one of the built-in error sounds."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^20.19.39",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.0.0"
+  }
+}
