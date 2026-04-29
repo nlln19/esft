@@ -2,9 +2,23 @@
   "name": "terminal-es",
   "displayName": "Error Sounds for Terminal",
   "description": "Plays a sound when a terminal command prints an error or exits with a non-zero code.",
-  "icon": "media/icon.png",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "publisher": "nlln19",
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nlln19/terminalerrorsound"
+  },
+  "license": "MIT",
+  "keywords": [
+    "terminal",
+    "error",
+    "sound",
+    "alert",
+    "notification",
+    "powershell",
+    "debugging"
+  ],
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -23,7 +37,7 @@
       },
       {
         "command": "terminalErrorSound.selectSound",
-        "title": "Terminal Error Sound: Select Custom Sound"
+        "title": "Terminal Error Sound: Import Custom Sound"
       },
       {
         "command": "terminalErrorSound.chooseBuiltInSound",
@@ -32,6 +46,14 @@
       {
         "command": "terminalErrorSound.resetSound",
         "title": "Terminal Error Sound: Reset Custom Sound"
+      },
+      {
+        "command": "terminalErrorSound.toggleEnabled",
+        "title": "Terminal Error Sound: Toggle Enabled"
+      },
+      {
+        "command": "terminalErrorSound.chooseTriggerMode",
+        "title": "Terminal Error Sound: Choose Trigger Mode"
       }
     ],
     "configuration": {
@@ -55,9 +77,27 @@
           "default": [
             "\\berror\\b",
             "\\bfailed\\b",
+            "\\bfailure\\b",
             "\\bexception\\b",
             "traceback",
-            "panic:"
+            "panic:",
+            "fatal:",
+            "segmentation fault",
+            "abort trap",
+            "command not found",
+            "not recognized as",
+            "not found",
+            "no such file or directory",
+            "permission denied",
+            "access denied",
+            "cannot find",
+            "module not found",
+            "syntaxerror",
+            "typeerror",
+            "referenceerror",
+            "npm err!",
+            "die benennung .* wurde nicht als name",
+            "der befehl .* ist entweder falsch geschrieben"
           ],
           "description": "Regex patterns that trigger the sound when they appear in terminal output."
         },
@@ -72,6 +112,21 @@
             "vineboom"
           ],
           "description": "Select one of the built-in error sounds."
+        },
+        "terminalErrorSound.triggerMode": {
+          "type": "string",
+          "default": "both",
+          "enum": [
+            "both",
+            "exitCode",
+            "patterns"
+          ],
+          "enumDescriptions": [
+            "Play a sound when an error pattern is detected or when a command exits with a non-zero exit code.",
+            "Play a sound only when a command exits with a non-zero exit code.",
+            "Play a sound only when an error pattern is detected in the terminal output."
+          ],
+          "description": "Choose when the terminal error sound should be triggered."
         }
       }
     }
