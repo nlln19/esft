@@ -1,7 +1,7 @@
 <div align="center">
   <img src="media/icon.png" width="120"/>
 
-# Error Sound for Terminal
+# Error Sounds for Terminal
 
 A simple [Visual Studio Code](https://code.visualstudio.com/) extension that plays a sound when a terminal command fails or prints an error message.
 
